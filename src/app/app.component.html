@@ -1,0 +1,60 @@
+<div class="row m-0">
+  <div class="col text-center mt-2">
+    <h1 class="tamanoLetra">Registro de Usuario</h1>
+  </div>
+</div>
+<form [formGroup]="form" class="container mt-3" autocomplete="off" (ngSubmit)="onSubmit()">
+  <div class="mb-3 row">
+    <div class="col-sm-12">
+      <label for="nombres" class="col-sm-2 col-form-label">Nombres</label>
+      <input formControlName="nombres" type="text" class="form-control" id="nombres">
+      <mat-error *ngIf="form.get('nombres')?.touched && form.get('nombres')?.hasError('required')" class="text-danger">Nombre es requerido</mat-error>
+    </div>
+  </div>
+  
+  <div class="mb-3 row">
+    <div class="col">
+      <label for="apellidoPaterno" class="form-label">Apellido Paterno</label>
+      <input formControlName="apellidoPaterno" type="text" class="form-control" id="apellidoPaterno">
+      <mat-error *ngIf="form.get('apellidoPaterno')?.touched && form.get('apellidoPaterno')?.hasError('required')" class="text-danger">Apellido Paterno es requerido</mat-error>
+    </div>
+    <div class="col">
+      <label for="apellidoMaterno" class="form-label">Apellido Materno</label>
+      <input formControlName="apellidoMaterno" type="text" class="form-control" id="apellidoMaterno">
+      <mat-error *ngIf="form.get('apellidoMaterno')?.touched && form.get('apellidoMaterno')?.hasError('required')" class="text-danger">Apellido Materno es requerido</mat-error>
+    </div>
+  </div>
+  
+  <div class="mb-3 row">
+    <div class="col">
+      <label for="correo" class="form-label">Correo</label>
+      <input formControlName="correo" type="text" class="form-control" id="correo">
+      <mat-error *ngIf="form.get('correo')?.touched && form.get('correo')?.hasError('required')" class="text-danger">Correo es requerido</mat-error>
+      <mat-error *ngIf="form.get('correo')?.touched && form.get('correo')?.hasError('email')" class="text-danger">Correo no válido</mat-error>
+    </div>
+    <div class="col">
+      <label for="telefono" class="form-label">Teléfono</label>
+      <input formControlName="telefono" type="text" class="form-control" id="telefono" minlength="10" maxlength="10" (keypress)="soloNumeros($event)">
+      <mat-error *ngIf="form.get('telefono')?.touched && form.get('telefono')?.hasError('required')" class="text-danger">Teléfono es requerido</mat-error>
+      <mat-error *ngIf="form.get('telefono')?.touched && form.get('telefono')?.hasError('minlength')" class="text-danger">Número de teléfono no válido</mat-error>
+    </div>
+  </div>
+  
+  <div class="mb-3 row">
+    <div class="col-sm-12">
+      <label for="genero" class="col-sm-2 col-form-label">Género</label>
+      <select formControlName="genero" class="form-select" id="genero">
+        <option value="">Seleccione...</option>
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+        <option value="otro">Otro</option>
+        </select>
+        <mat-error *ngIf="form.get('genero')?.touched && form.get('genero')?.hasError('required')" class="text-danger">Género es requerido</mat-error>
+        </div>        
+  </div>
+  <div class="row m-0 mb-3">
+    <div class="col text-center mt-2">
+      <button type="submit" class="btn btn-primary">Registrar Usuario</button>
+    </div>
+  </div>
+</form>
